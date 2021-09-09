@@ -1,0 +1,79 @@
+@extends('admin.layouts.default')
+@section('title', $management.' '.$pageType)
+@section('content')
+<div class="content-wrapper">
+    <!-- Content Header Section Start -->
+    <section class="content-header">
+        <h1> {{ $management.' '.$pageType }}</h1>
+        <!-- Breadcrumb Start -->
+        <ol class="breadcrumb">
+            @foreach($breadcrumb['CREATEPAGE'] as $eachBreadcrumb)
+            @if($loop->first)
+            <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            @endif
+            @if($eachBreadcrumb['url'] == 'THIS')
+            <li>{{ $eachBreadcrumb['label'] }}</li>
+            @else
+            <li><a href="{{ $eachBreadcrumb['url'] }}">{{ $eachBreadcrumb['label'] }}</a></li>
+            @endif                                                        
+            @endforeach        
+        </ol>
+        <!-- Breadcrumb End -->		
+    </section>
+    <!-- Content Header Section End -->
+    <section class="content">
+        <!-- Message Start -->
+        @include('admin.includes.messages')
+        <!-- Message End -->    		
+        <!-- <div class="container"> -->
+  
+    
+
+	<div class="row">
+  
+      
+      <!-- left edit form column -->
+      <div class="col-md-9 col-sm-12 col-xs-12 personal-info left mt50">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Category Name:</label>
+            <div class="col-lg-8">
+            <input class="form-control" type="text" value="Fashion">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Sub Categories:</label>
+            <!-- Multiselect dropdown -->
+            <div class="col-lg-8">
+                        <select class="selectpicker" multiple data-live-search="true">
+                          <option>Cloth</option>
+                          <option>Accessories</option>
+                          <option>Shoes</option>
+                          <option>Watches</option>
+                        </select>
+                        </div>                     
+                 </div>
+         
+                 <div class="form-group">
+                  <label class="col-lg-3 control-label"></label>
+                  <div class="col-lg-8">
+                    <a class="link ptc"><i class="fa fa-plus-circle f28" aria-hidden="true"></i></a>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-lg-3 control-label"></label>
+                  <div class="col-lg-8">
+                  <input type="button " class="btn btn-primary modified" value="Save">
+                  </div>
+                </div>
+        </form>
+      </div>   
+        
+      
+
+  </div>
+<!-- </div> -->
+</section>
+</div>
+@endsection

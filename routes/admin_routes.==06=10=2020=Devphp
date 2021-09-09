@@ -1,0 +1,121 @@
+<?php
+
+Route::group(['prefix' => 'da-admin', 'namespace' => 'admin'], function () {
+    Route::get('/', ['as' => 'admin_login',     'uses' => 'LoginController@index']);
+    Route::post('/dologin', ['as' => 'do_admin_login', 'uses' => 'LoginController@dologin']);
+    Route::any('/forgot-password', array('as' => 'admin_forgot_password',   'uses' => 'LoginController@forgot_password'));
+    Route::get('/reset-password/{token}', array('as' => 'admin_reset_newpassword', 'uses' => 'LoginController@resetPassword'));
+    Route::post('/reset-password/{token}', array('as' => 'admin_password_update', 'uses' => 'LoginController@updatePassword'));
+});
+
+//******* Routes without login End *********//
+
+//******* Routes with login Start *********//
+
+Route::group(['prefix' => 'da-admin', 'namespace' => 'admin', 'middleware' => 'admin'], function () {
+
+    Route::any('/dashboard', array('as' => 'dashboard',                  'uses' => 'DashboardController@index'));
+    Route::get('/logout', array('as' => 'admin_logout',                  'uses' => 'LoginController@logout'));
+    Route::any('/change-password', array('as' => 'admin_change_password', 'uses' => 'DashboardController@change_password'));
+    Route::post('/statusChange', ['as' => 'statusChange',                'uses' => 'CommonAdminController@statusChange']);
+    Route::get('/downloadImage/{name}', ['as' => 'downloadImage',       'uses' => 'CommonAdminController@downloadImage']);
+    Route::any('/update-profile', array('as' => 'admin_update_profile', 'uses' => 'UserController@updateAdminProfile'));
+
+    // Setting routes Start
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/',             ['as' => 'settings.edit',                  'uses' =>  'SettingController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'settings.update',                'uses' =>  'SettingController@update']);
+    });
+    // Setting routes End
+    
+    
+    // Teachers routes Start
+    Route::group(['prefix' => 'teachers'], function () {
+        Route::get('/',             ['as' => 'teachers.list',                  'uses' =>  'TeacherController@index']);
+        Route::get('/add',          ['as' => 'teachers.add',                   'uses' =>  'TeacherController@add']);
+        Route::post('/add',         ['as' => 'teachers.store',                 'uses' =>  'TeacherController@store']);
+        Route::get('/edit/{id}',    ['as' => 'teachers.edit',                  'uses' =>  'TeacherController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'teachers.update',                'uses' =>  'TeacherController@update']);
+        // Route::post('/statusChange', ['as' => 'users.status',                'uses' =>  'TeacherController@statusChange']);
+        Route::post('/delete/{id}', ['as' => 'teachers.delete',                'uses' =>  'TeacherController@delete']);
+        Route::get('/change-user-password/{id}', ['as' => 'teachers.changeUserPassword',   'uses' =>  'TeacherController@changePassword']);
+        Route::post('/change-user-password/{id}', ['as' => 'teachers.updateUserPassword',   'uses' =>  'TeacherController@updatePassword']);
+        // Route::post('/get-users-dropdown', ['as' => 'users.getUsersDropdown',    'uses' =>  'UserController@getUserDropDownByType']);
+
+        Route::get('/view/{id}', ['as' => 'teachers.view',               'uses' =>  'TeacherController@view']);
+
+    });
+    // Teachers routes End
+
+    // Users routes Start
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('/',             ['as' => 'users.list',                  'uses' =>  'UserController@index']);
+        Route::get('/add',          ['as' => 'users.add',                   'uses' =>  'UserController@add']);
+        Route::post('/add',         ['as' => 'users.store',                 'uses' =>  'UserController@store']);
+        Route::get('/view/{id}', ['as' => 'users.view',               		'uses' =>  'UserController@view']);
+		Route::get('/edit/{id}',    ['as' => 'users.edit',                  'uses' =>  'UserController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'users.update',                'uses' =>  'UserController@update']);
+        Route::post('/statusChange', ['as' => 'users.status',                'uses' =>  'UserController@statusChange']);
+        Route::post('/delete/{id}', ['as' => 'users.delete',                'uses' =>  'UserController@delete']);
+        Route::get('/change-user-password/{id}', ['as' => 'users.changeUserPassword',   'uses' =>  'UserController@changePassword']);
+        Route::post('/change-user-password/{id}', ['as' => 'users.updateUserPassword',   'uses' =>  'UserController@updatePassword']);
+        Route::post('/get-users-dropdown', ['as' => 'users.getUsersDropdown',    'uses' =>  'UserController@getUserDropDownByType']);
+
+    });
+    // Users routes End
+
+
+    // CMS routes Start
+    Route::group(['prefix' => 'cms'], function () {
+        Route::get('/',             ['as' => 'cms.list',                  'uses' =>  'CmsController@index']);
+        Route::get('/edit/{id}',    ['as' => 'cms.edit',                  'uses' =>  'CmsController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'cms.update',                'uses' =>  'CmsController@update']);
+    });
+    // CMS routes End   
+
+    // CMS routes Start
+    Route::group(['prefix' => 'cmscontents'], function () {
+        Route::get('/',             ['as' => 'cmscontents.list',                  'uses' =>  'CmsContentController@index']);
+        Route::get('/edit/{id}',    ['as' => 'cmscontents.edit',                  'uses' =>  'CmsContentController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'cmscontents.update',                'uses' =>  'CmsContentController@update']);
+    });
+    // CMS routes End  
+
+    // Country routes Start
+    Route::group(['prefix' => 'countries' ], function () {
+        Route::get('/',              ['as' => 'countries.list',                 'uses' =>  'CountryController@index']);
+         Route::get('/add',          ['as' => 'countries.add',                  'uses' =>  'CountryController@add']);
+         Route::post('/add',         ['as' => 'countries.store',                'uses' =>  'CountryController@store']);
+         Route::get('/edit/{id}',    ['as' => 'countries.edit',                 'uses' =>  'CountryController@edit']);
+         Route::post('/edit/{id}',   ['as' => 'countries.update',               'uses' =>  'CountryController@update']);
+         Route::post('/delete/{id}', ['as' => 'countries.delete',               'uses' =>  'CountryController@delete']);   
+    });
+    // Country routes End
+    
+   // Business routes Start
+    Route::group(['prefix' => 'business'], function () {
+        Route::get('/',             ['as' => 'business.list',                  'uses' =>  'BusinessController@index']);
+        Route::get('/edit/{id}',    ['as' => 'business.edit',                  'uses' =>  'BusinessController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'business.update',                'uses' =>  'BusinessController@update']);
+        Route::get('/view/{id}', ['as' => 'business.view',               'uses' =>  'BusinessController@view']);
+        Route::get('/add',          ['as' => 'business.add',                   'uses' =>  'BusinessController@add']);
+    });
+    // Business routes End   
+
+    // Category routes Start
+    Route::group(['prefix' => 'category'], function () {
+
+        Route::get('/',             ['as' => 'category.list',                  'uses' =>  'CategoryController@index']);
+        Route::get('/edit/{id}',    ['as' => 'category.edit',                  'uses' =>  'CategoryController@edit']);
+        Route::post('/edit/{id}',   ['as' => 'category.update',                'uses' =>  'CategoryController@update']);
+        Route::get('/view/{id}', ['as' => 'category.view',               'uses' =>  'CategoryController@view']);
+        Route::get('/add',          ['as' => 'category.add',                   'uses' =>  'CategoryController@add']);        
+    });
+    // Category routes End   
+
+ });
+
+
+
+
+?>

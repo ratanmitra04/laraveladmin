@@ -1,0 +1,109 @@
+<?php
+/***********************************************/
+# Company Name    :                             
+# Author          : KB                            
+# Created Date    :                               
+# Controller Name : DashboardController               
+# Purpose         : Dashboard features, user pa             
+/***********************************************/
+
+namespace App\Http\Controllers\admin;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Auth;
+use \Validator;
+use \Hash;
+use \Redirect;
+use App\User;
+use Exception;
+use GlobalVars;
+use App\Business;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        // echo $d = \Helpers::encrypt(4);
+        // echo \Helpers::decrypt($d);
+        try{
+            $data['title']              =   'Dashboard';
+            $data['js_array']           =   array('morris.min.js','raphael.min.js','dashboard.js');
+
+            // $contactCount               =   Contact::count();
+            // $data['contact_count']      =   $contactCount;
+
+            // $clienteleCount             =   Clientele::count();
+            // $data['clientele_count']    =   $clienteleCount;
+
+            // $testimonialCount           =   Testimonial::count();
+            // $data['testimonial_count']  =   $testimonialCount;
+
+            // $jobPostingCount            =   JobPosting::count();
+            // $data['job_posting_count']  =   $jobPostingCount;
+			
+			$data = Business::where('id','!=','')->get();
+			$data['business_count']=COUNT($data);
+			
+			$dataFeatured = Business::where('featured','1')->get();
+			$data['featuredbusiness_count'] = COUNT($dataFeatured);
+			
+            //$data['contact_count'] = 0;
+            $data['clientele_count'] = 0;
+            $data['testimonial_count'] = 0;
+            $data['job_posting_count'] = 0;
+
+            return view('admin.adminuser.dashboard', $data);
+        }catch(Exception $e){
+            throw new \App\Exceptions\AdminException($e->getMessage());
+        }       
+    }
+
+    /**
+        * Function Name :  change_password
+        * Purpose       :  This function is use for change password of a user.
+        * Author        :
+        * Created Date  : 18-03-2019
+        * Modified date :          
+        * Input Params  :  \Illuminate\Http\Request $request
+        * Return Value  :  void
+    */
+
+    public function change_password(Request $request) {
+        try{
+            $data['title']      = 'Change Password';
+            if ($request->isMethod('post')) {
+                $Validator = Validator::make($request->all(), [
+                    'old_password'      => 'required',
+                    'new_password'      => 'required|min:6',
+                    'confirm_password'  => 'required|same:new_password'
+                ]);
+
+                if ($Validator->fails()) {
+                    return \Redirect::route('admin_change_password')->withErrors($Validator);
+                } else {
+                    $user = User::find(auth()->guard('admin')->user()->id);
+                    if ((Hash::check($request->input('old_password'), $user->password))) {
+                        if (!(Hash::check($request->input('new_password'), $user->password))) {
+                            $user->password         = $request->input('new_password');
+                            $user->save();
+                            $request->session()->flash('success', 'Your password has been changed successfully.');
+                            return \Redirect::Route('admin_change_password');                            
+                        }else{
+                            $request->session()->flash('error', 'Current password should not be same with the old password.');
+                            return \Redirect::Route('admin_change_password');
+                        }
+                    } else {
+                        $request->session()->flash('error', 'Current password is not matched with record.');
+                        return \Redirect::Route('admin_change_password');
+                    }
+                }
+            }
+            return view('admin/adminuser.change_password', $data);
+        }catch(Exception $e){
+            throw new \App\Exceptions\AdminException($e->getMessage());
+        }        
+    }
+
+
+}

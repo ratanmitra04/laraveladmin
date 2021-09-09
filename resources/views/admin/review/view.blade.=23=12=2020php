@@ -1,0 +1,94 @@
+@extends('admin.layouts.default')
+@section('title', $management.' '.$pageType)
+@section('content')
+<div class="content-wrapper">
+    <!-- Content Header Section Start -->
+    <section class="content-header">
+        <h1> {{ $management.' '.$pageType }}</h1>
+        <!-- Breadcrumb Start -->
+        <ol class="breadcrumb">
+            @foreach($breadcrumb['LISTPAGE'] as $eachBreadcrumb)
+            @if($loop->first)
+            <li><a href="{{ route('dashboard') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            @endif
+            @if($eachBreadcrumb['url'] == 'THIS')
+            <li>{{ $eachBreadcrumb['label'] }}</li>
+            @else
+            <li><a href="{{ $eachBreadcrumb['url'] }}">{{ $eachBreadcrumb['label'] }}</a></li>
+            @endif                                                        
+            @endforeach        
+        </ol>
+        <!-- Breadcrumb End -->		
+    </section>
+    <!-- Content Header Section End -->
+    <!-- Content Section Start -->
+    <section class="content">
+        <!-- Message Start -->
+        @include('admin.includes.messages')
+        <!-- Message End --> 		
+      
+        <!-- <div class="container"> -->
+  <nav aria-label="breadcrumb mt50">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"> <a href="{{ route('review.list') }}">Review Management
+	          </a></li>
+      <li class="breadcrumb-item"><a href="#">View</a></li>
+
+      <ul class="righttabs pull-right">
+                  <li class="breadcrumb-item"><a class="btn btn-default" value="Back" href="{{ route($routePrefix.'.list') }}">Back</a></li>
+               </ul>
+    </ol>
+  </nav>
+	<div class="row">
+      <!-- left edit form column -->
+      <div class="col-sm-12 col-xs-12 personal-info ">
+        <form class="form-horizontal" role="form">          
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Review By:</label>
+            <div class="col-lg-8">
+              <label class="control-label">notification title</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Review For:</label>
+            <div class="col-lg-8">
+              <label class="control-label">notification title</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Review Content:</label>
+            <div class="col-lg-8">
+              <p>Here are our 12 best Italian recipes that includes Italian veg dishes, Italian pasta recipes, Italian pizza recipes, Italian salad, Italian desserts and Italian bread recipe. Go on and try, you know you can't resist!</p>
+             
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Rating:</label>
+            <div class="col-lg-8">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+              
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-lg-3 control-label">Review On:</label>
+            <div class="col-lg-8">
+              <label class="control-label">13.05.2020</label>
+            </div>
+          </div>         
+        </form>      
+      </div>
+      <div class="col-sm-12 col-xs-12"> 
+            <input type="reset" class="btn btn-default pull-right" value="Reject">                
+            <input type="reset" class="btn btn-default pull-right" value="Approve">    
+        </div>
+  </div>
+<!-- </div> -->
+
+       
+    </section>
+</div>
+@endsection

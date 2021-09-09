@@ -1,0 +1,493 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+
+.body {
+// custom fonts, etcetera can go here 
+}
+.righttabs{
+  list-style: none;
+  display: flex;
+}
+
+.righttabs a.btn.btn-default {
+  padding: 2px 13px;
+  margin-right: 3px;
+}
+.modal {
+  position: fixed;
+  z-index: 1050;
+  display: none;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.wd{
+width: 650px;
+}
+.ct{
+padding: 15px;
+text-align: left;
+}
+.pb25{
+padding-bottom: 25px;
+}
+
+
+.jumbotron-flat {
+  background-color: solid #4DB8FFF;
+  height: 100%;
+  border: 1px solid #4DB8FF;
+  background: white;
+  width: 100%;
+text-align: center;
+overflow: auto;
+}
+.prelative{
+  position: relative;
+}
+.paymentAmt {
+    font-size: 80px; 
+}
+
+.centered {
+    text-align: center;
+}
+.wd900{
+  width: 900px !important;;
+}
+.mr25{
+  margin-right: 25px;
+}
+.title {
+ padding-top: 15px;   
+}
+.right{
+  float: right!important;
+}
+.left{
+  float: left!important;
+}
+.mt50{
+  margin-top: 50px;
+}
+.mt25{
+  margin-top: 25px;
+}
+.mt15{
+  margin-top: 15px;
+}
+.f28{
+  font-size: 40px;
+}
+.mb50{
+  margin-bottom: 50px;
+}
+.imgcam{  
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.ptc{
+  cursor: pointer;
+}
+select.btn.btn-secondary {
+border:1px solid #ccc;
+}
+input#file{
+  display: inline-block;
+  width:21px;
+  height:21px;
+  padding: 23px 0 0 0;
+  background-image: url(http://demoyourprojects.website/projects/directoryapp/dev/admin/images_admin/logo.png);
+  overflow: hidden;
+  background-size: 29px 289px;
+  background-position: 0% 70%;
+  position: absolute;
+  position: absolute;
+    margin-top: 110px;
+    margin-left: -25px;
+}
+
+input#filecam {
+    display: inline-block;
+    width: 24px;
+    height: 22px;
+    padding: 19px 0 0 0;
+    background-image: url(http://demoyourprojects.website/projects/directoryapp/dev/admin/images_admin/cam1.png);
+    overflow: hidden;
+    background-size: 22px 19px;
+    position: absolute;
+    margin-top: 93px;
+    margin-right: 13px;
+    z-index: 1;
+    bottom: 0;
+    right: 0;
+}
+
+ 
+input#file1[type=file] {
+  display: block;
+  position: absolute;
+  font-family: 'FontAwesome';
+  top: 0;
+  left: 10px;
+  content: "\f005";
+  opacity: 0;
+  cursor: pointer;
+}
+
+.addm{
+  position: absolute;
+  margin-top: 115px;
+  cursor: pointer;
+}
+
+
+
+//gallery//
+
+
+.row > .column {
+  padding: 0 8px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column1 {
+  float: left;
+    width: 21%;
+    margin-top: 38%;
+    margin-left: 18px;
+}
+.column {
+  float: left;
+  width: 25%;
+  display: none;
+}
+.pab{
+  position: absolute;
+}
+/* The Modal (background) */
+
+.wd30{
+  width:30%;
+}
+.fleft{
+  float: left;
+}
+/* Modal Content */
+.modal1-content {
+  position: absolute;
+  top:0;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+}
+
+.modal-content{
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.mySlides {
+  display: none;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 59%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+img {
+  margin-bottom: -4px;
+}
+
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 2px;
+  color: white;
+}
+.caption-container p{
+  margin: 2px 0 2px !important;
+}
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.form-group.has-search {
+  margin-left: 15px;
+}
+.has-search .form-control {
+  padding-left: 3.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+  top: -27px;
+  left: 4px;
+}
+
+#dateline{
+  position: relative;
+}
+
+#dateline .online{
+  margin-bottom: 15px;  
+display:inline-block; 
+width:31%; 
+text-align: center;
+}
+
+input#comment {
+  display: inline-block;
+  width: 100%;
+  padding: 120px 0 0 0;
+  height: 100px;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 10px;
+  background-size: 60px 60px;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  bottom: 6px;
+  margin-right: 11px;
+  margin-left: 9px;
+
+}
+.mtup{
+  margin-top: 45px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.approved{
+  color: green;
+}
+.rejected{
+  color:red;
+}
+.pending{
+  color: orange;
+}
+.modified{
+  margin-top: 20px;
+  font-weight: 800;
+  font-size: 16px;
+}
+#chartContainer1 canvas.canvasjs-chart-canvas  {
+  width: 100% !important;
+    height: 300px !important;
+    position: absolute;
+}
+.ab {
+	width:90%;
+	display:inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px){
+
+  .wd{
+    width: auto;
+  }
+.modal-content{
+height: 155px;
+}
+.left{
+  margin-top:36%;
+}
+
+.column1 {
+  margin-top: 200px;
+}
+
+.addm{
+  margin-top: 130px;
+}
+input#filecam {
+  margin-bottom: -17px;
+}
+.wd900{
+  width: auto !important;
+}
+
+.righttabs {
+  list-style: none;
+  display: flex;
+  padding-left: 0;
+  padding-top: 10px;
+}
+ul.righttabs.pull-right{
+  float: unset!important;
+}
+.datasel {
+  padding: 15px;
+  float: unset!important;
+}
+
+}
